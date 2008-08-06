@@ -1,0 +1,10 @@
+Package: IHA
+Type: Package
+Title: This package implements The Nature Conservancy's Indicators of Hydrologic Alteration software in R.
+Version: 0.1
+Date: 2008-05-30
+Author: Jason Law
+Maintainer: Jason Law <jason.e.law@gmail.com>
+Depends: zoo,RColorBrewer,lattice 
+Description: The Nature Conservancy's web page at http://www.nature.org/initiatives/freshwater/conservationtools/ describes the software and has illustrations of it's use.  The IHA R package does not currently implement the EFC component of the software.
+License: GPL version 2
