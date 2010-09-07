@@ -1,30 +1,27 @@
 \name{group1}
 \alias{group1}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ ~~function to do ... ~~ }
+\title{ Magnitude of monthly water conditions }
 \description{
-  ~~ A concise (1-5 lines) description of what the function does. ~~
+  Calculates the IHA parameter group 1: Magnitude of montly
+  water conditions
 }
 \usage{
 group1(x, yr = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{ ~~Describe \code{x} here~~ }
-  \item{yr}{ ~~Describe \code{yr} here~~ }
+  \item{x}{ A zoo object containing the flow series }
+  \item{yr}{ A factor with year designations}
 }
 \details{
-  ~~ If necessary, more details than the description above ~~
+  See IHA documentation: \url{http://www.nature.org/initiatives/freshwater/conservationtools/art17004.html}
 }
 \value{
-  ~Describe the value returned
-  If it is a LIST, use
-  \item{comp1 }{Description of 'comp1'}
-  \item{comp2 }{Description of 'comp2'}
-  ...
+A matrix with monthly medians.
 }
-\references{ ~put references to the literature/web site here ~ }
-\author{ ~~who you are~~ }
+\references{ \url{http://www.nature.org/initiatives/freshwater/conservationtools/art17004.html} }
+\author{ jason.law@portlandoregon.gov }
 \note{ ~~further notes~~ 
 
  ~Make other sections like Warning with \section{Warning }{....} ~
