@@ -10,14 +10,21 @@ function (x, yr = NULL)
     cbind(ext, "Zero flow days" = zeros, "Base index" = baseindex)
 }
 
-f <- function(x, window = c(1, 3, 7, 30, 90)){
-	window <- c('3day' = 3, '7day' = 7, '30day' = 30, '90day' = 90)
-	rollx <- mapply('rollmean', k = window, MoreArgs = list(x = coredata(x), na.pad = T))
-	x <- cbind(x, rollx)
-	xd <- as.data.frame(x)
-	year <- as.factor(water.year(index(x)))
-	spl_xd <- split(xd, year)
-	ldply(spl_xd, function(x) as.numeric(apply(x, 2, range, na.rm=T)))
+'group2.alt' <-
+function(x, year, window = c(1, 3, 7, 30, 90)){
+	rollx <- mapply('runmean', k = window, MoreArgs = list(x = coredata(x), alg = 'fast', endrule = 'NA'))
+	xd <- data.frame(year = as.factor(water.year(index(x))))
+	xd$val <- rollx
+	res <- ddply(xd, .(year), 
+			function(x){
+				rng <- as.numeric(apply(x$val, 2, range, na.rm=T))
+				baseindex <- min(x$val[,3], na.rm=T) / mean(x$val[,1])
+				zeros <- length(which(x[,1] == 0))
+				c(rng, zeros, baseindex)
+			})
+	nms <- sprintf(c('%1$s Day Min', '%1$s Day Max'), rep(window, each=2))
+	names(res) <- c('Year', nms, 'Zero flow days', 'Base index')
+	return(res)
 }	
 
 
