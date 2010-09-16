@@ -1,7 +1,8 @@
 `maxdate` <-
 function (x, julian = T) 
 {
-    d <- index(x)[which.max(x)]
+    mx <- index(x)[which.max(x)]
     if (julian) 
-        as.POSIXlt(d)$yday + 1
+        mx <- as.POSIXlt(mx)$yday + 1
+	mx
 }
