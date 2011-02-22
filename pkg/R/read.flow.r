@@ -13,7 +13,7 @@ read.flow <- function(site = NULL, start.date, end.date = NULL, gauge = F, http 
           else{
                start.date <- start.date }}
      if (http){
-          input = sprintf("http://waterdata.usgs.gov/nwis/dv?site_no=%i&%s&begin_date=%s%s&format=rdb",
+          input = sprintf("http://waterdata.usgs.gov/nwis/dv?site_no=%s&%s&begin_date=%s%s&format=rdb",
                site, parameter, start.date, end.date) }
      else{
           input = file }
