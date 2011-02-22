@@ -10,7 +10,7 @@ read.flow(site, start.date, end.date = NULL, gauge = F, file = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{site}{ the USGS site_no }
+  \item{site}{ the USGS site_no as a string}
   \item{start.date}{ a starting date in a format convertible to a date using \code{as.Date} }
   \item{end.date}{ an ending data in a format convertible to a date using \code{as.Date} }
   \item{gauge}{ logical describing whether you want gauge height data in addition to flow}
@@ -24,7 +24,7 @@ read.flow(site, start.date, end.date = NULL, gauge = F, file = NULL)
 \author{ Jason Law <jason.e.law@gmail.com>}
 
 \examples{
-d <- read.flow(14211820, start.date = ISOdate(2008,1,1))
+d <- read.flow('14211820', start.date = ISOdate(2008,1,1))
 head(d)
 }
 
