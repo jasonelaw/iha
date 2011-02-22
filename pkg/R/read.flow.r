@@ -1,6 +1,5 @@
 read.flow <-
-    function(..., 
-        site, start.date, end.date = NULL, gauge = F, file = NULL)
+    function(site, start.date, end.date = NULL, gauge = F, file = NULL)
 {
   if (is.null(file)) {
     parameter <- 'cb_00060=on'
