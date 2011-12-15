@@ -5,5 +5,7 @@ Version: 0.1-16
 Date: 2011-02-22
 Author: Jason Law
 Maintainer: Jason Law <jason.e.law@gmail.com>
+Depends: zoo
+Imports: plyr, caTools, lattice
 Description: The Nature Conservancy's web page at http://www.nature.org/initiatives/freshwater/conservationtools/ describes the software and has illustrations of it's use.  The IHA R package does not currently implement the EFC component of the software.
 License: GPL version 2

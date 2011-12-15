@@ -1,6 +1,5 @@
 exportPattern("^[^\\.]")
-import("zoo")
-importFrom("lattice", xyplot)
+importFrom("lattice", xyplot, panel.lines, panel.superpose)
 importFrom("caTools", runmean)
 importFrom(RColorBrewer, brewer.pal)
 importFrom(plyr, ddply)
