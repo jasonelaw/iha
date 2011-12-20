@@ -6,8 +6,12 @@
 ###############################################################################
 
 
-function (x) 
+circ.mean <- function (x, units = c('days', 'radians')) 
 {
+  units <- match.arg(units)
+  if (identical(units, 'days')){
+    x <- x * (2 * pi) / 365.25
+  }
 	if (any(is.na(x))) {
 		circmean <- NA
 	}
@@ -21,5 +25,11 @@ function (x)
 			circmean <- NA
 		}
 	}
+  if (circmean < 0){
+    circmean <- 2 * pi + circmean
+  }
+  if (identical(units, 'days')){
+    circmean <- circmean * 365.25 / (2 * pi)
+  }
 	return(circmean)
 }
