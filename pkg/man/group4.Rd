@@ -15,8 +15,8 @@
   duration of high and low pulses.
 }
 \examples{
-data(willamette)
-group4(willamette)
+data(bullrun)
+group4(bullrun)
 }
 \author{
   jason.e.law@gmail.com

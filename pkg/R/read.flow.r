@@ -17,6 +17,7 @@
 #'can be looked up on the USGS web site.
 #'@author Jason Law <jason.e.law@@gmail.com>
 #'@references http://waterdata.usgs.gov/nwis
+#'@export
 #'@examples
 #'
 #'d <- read.flow('14211820', start.date = ISOdate(2008,1,1))

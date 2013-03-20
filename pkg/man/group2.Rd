@@ -8,7 +8,13 @@
 \arguments{
   \item{window}{the rolling statistic window sizes}
 
+  \item{...}{additional arguments passed to ddply}
+
   \item{x}{A zoo object containing the flow series}
+
+  \item{year}{the type of year factor to be used, \code{yr
+  = 'water'} or \code{yr = 'calendar'} for water years and
+  calendar years respectively}
 }
 \value{
   a data frame with the group 2 statistics for each year
@@ -18,8 +24,8 @@
   water condition and include 12 parameters.
 }
 \examples{
-data(willamette)
-group2(willamette, 'water')
+data(bullrun)
+group2(bullrun, 'water')
 }
 \author{
   jason.e.law@gmail.com

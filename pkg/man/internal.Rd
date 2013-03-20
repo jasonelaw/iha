@@ -1,5 +1,4 @@
-\name{annual.extrema}
-\alias{annual.extrema}
+\name{as.data.frame.rle}
 \alias{as.data.frame.rle}
 \alias{circ.mean}
 \alias{leap.year}
@@ -15,8 +14,6 @@
 \alias{years}
 \title{Internal functions in IHA}
 \usage{
-  annual.extrema(x, yr = NULL, ...)
-
   as.data.frame.rle(x)
 
   circ.mean(x, units = c("days", "radians"))

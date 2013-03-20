@@ -16,8 +16,8 @@
 #'@import plyr
 #'@export
 #'@examples
-#'data(willamette)
-#'group1(willamette, 'water')
+#'data(bullrun)
+#'group1(bullrun, 'water')
 `group1` <-
 function (x, year = c('water', 'calendar'), FUN = median) 
 {

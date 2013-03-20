@@ -6,6 +6,10 @@
 }
 \arguments{
   \item{x}{A zoo object containing the flow series}
+
+  \item{year}{the type of year factor to be used, \code{yr
+  = 'water'} or \code{yr = 'calendar'} for water years and
+  calendar years respectively}
 }
 \value{
   a matrix of group 5 parameters
@@ -15,8 +19,8 @@
   of water condition changes.
 }
 \examples{
-data(willamette)
-group5(willamette, 'water')
+data(bullrun)
+group5(bullrun, 'water')
 }
 \author{
   jason.e.law@gmail.com

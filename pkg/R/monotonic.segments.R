@@ -1,3 +1,6 @@
+#'Internal functions in IHA
+#'
+#'These are internal, undocumented (for now) functions in the IHA package
 #'@rdname internal
 `monotonic.segments` <-
 function (x, diff = T) 

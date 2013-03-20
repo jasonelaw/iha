@@ -10,8 +10,8 @@
 #'@references \url{http://www.conservationgateway.org/Files/Pages/indicators-hydrologic-altaspx47.aspx}
 #'@export
 #'@examples
-#'data(willamette)
-#'group4(willamette)
+#'data(bullrun)
+#'group4(bullrun)
 `group4` <- function(x){
   q <- quantile(as.numeric(x), probs = c(0.25, 0.75))
   p <- pulses(as.numeric(x), q)

@@ -9,8 +9,8 @@
 #'@references \url{http://www.conservationgateway.org/Files/Pages/indicators-hydrologic-altaspx47.aspx}
 #'@export
 #'@examples
-#'data(willamette)
-#'group5(willamette, 'water')
+#'data(bullrun)
+#'group5(bullrun, 'water')
 `group5` <- function (x, year = c('water', 'calendar')){
   year <- match.arg(year)
   yr <- switch(year,
