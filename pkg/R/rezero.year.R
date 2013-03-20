@@ -1,3 +1,4 @@
+#'@rdname internal
 `rezero.year` <-
 function (x, month = 10, day = 1, year.prefix = "WY") 
 {

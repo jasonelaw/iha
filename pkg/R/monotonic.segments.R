@@ -1,3 +1,4 @@
+#'@rdname internal
 `monotonic.segments` <-
 function (x, diff = T) 
 {

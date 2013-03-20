@@ -1,3 +1,23 @@
+#'Magnitude of monthly water conditions
+#'
+#'Calculates the IHA parameter group 1: Magnitude of montly water conditions
+#'
+#'See IHA documentation:
+#'\url{http://www.nature.org/initiatives/freshwater/conservationtools/art17004.html}
+#'
+#'@inheritParams group3
+#'@param FUN the function to be applied to the monthly values.  TNC uses median which is the default here.
+#'@return A matrix with monthly medians.
+#'@author jason.e.law@@gmail.com
+#'@references
+#'\url{http://www.nature.org/initiatives/freshwater/conservationtools/art17004.html}
+#'@importFrom zoo index coredata
+#'@import lattice
+#'@import plyr
+#'@export
+#'@examples
+#'data(willamette)
+#'group1(willamette, 'water')
 `group1` <-
 function (x, year = c('water', 'calendar'), FUN = median) 
 {

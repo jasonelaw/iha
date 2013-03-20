@@ -1,6 +1,10 @@
+#'Internal functions in IHA
+#'
+#'These are internal, undocumented (for now) functions in the IHA package
+#'@rdname internal
+#'
 `annual.extrema` <-
-function (x, yr = NULL, ...) 
-{
+function (x, yr = NULL, ...) {
     mean.window <- c(1, 3, 7, 30, 90)
     if (is.null(yr)) 
         yr <- water.year(index(x))

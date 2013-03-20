@@ -1,3 +1,4 @@
+#'@rdname internal
 `years` <-
 function (x, abbreviate = FALSE) 
 {

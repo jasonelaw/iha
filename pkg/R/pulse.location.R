@@ -1,3 +1,4 @@
+#'@rdname internal
 `pulse.location` <-
 function (x, XFUN = median) 
 {

@@ -1,3 +1,4 @@
+#'@rdname internal
 `pulse.numbers` <-
 function (x) 
 {

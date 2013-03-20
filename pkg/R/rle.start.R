@@ -1,3 +1,4 @@
+#'@rdname internal
 `rle.start` <-
 function (x) 
 {

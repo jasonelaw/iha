@@ -1,3 +1,4 @@
+#'@rdname internal
 `maxdate` <-
 function (x, julian = T) 
 {

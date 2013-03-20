@@ -1,3 +1,11 @@
+#'Plot discharge
+#'
+#'Plot discharge using a lattice plot
+#'@param z a zoo object with flow data
+#'@param palette an RColorBrewer palette name for flow quantiles
+#'@param log logical indicating whether the y axis should be log scaled or not
+#'@importFrom RColorBrewer brewer.pal
+#'@export
 `plotDischarge` <-
 function (z, palette = 'Dark2', log = F, ...) 
 {

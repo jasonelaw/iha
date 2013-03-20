@@ -1,3 +1,4 @@
+#'@rdname internal
 `pulses` <-
 function (x, q) 
 {

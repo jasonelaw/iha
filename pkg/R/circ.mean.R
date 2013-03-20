@@ -1,13 +1,7 @@
-# Function MeanCircularRad from 'circular' package.
-# 
-# Purpose:
-# Date: Sep 21, 2010
-# Author: JLAW
-###############################################################################
-
-
+#'@rdname internal
 circ.mean <- function (x, units = c('days', 'radians')) 
 {
+  # Function MeanCircularRad from 'circular' package.
   units <- match.arg(units)
   if (identical(units, 'days')){
     x <- x * (2 * pi) / 365.25

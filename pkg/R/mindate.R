@@ -1,3 +1,4 @@
+#'@rdname internal
 `mindate` <-
 function (x, julian = T) 
 {

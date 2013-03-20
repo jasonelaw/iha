@@ -1,53 +1,30 @@
 \name{group2}
 \alias{group2}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{ ~~function to do ... ~~ }
-\description{
-  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
+\title{Calculates the group2 IHA statistics}
 \usage{
-group2(x, yr = NULL)
+  group2(x, year = c("water", "calendar"),
+    window = c(1, 3, 7, 30, 90), ...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{ ~~Describe \code{x} here~~ }
-  \item{yr}{ ~~Describe \code{yr} here~~ }
-}
-\details{
-  ~~ If necessary, more details than the description above ~~
+  \item{window}{the rolling statistic window sizes}
+
+  \item{x}{A zoo object containing the flow series}
 }
 \value{
-  ~Describe the value returned
-  If it is a LIST, use
-  \item{comp1 }{Description of 'comp1'}
-  \item{comp2 }{Description of 'comp2'}
-  ...
+  a data frame with the group 2 statistics for each year
 }
-\references{ ~put references to the literature/web site here ~ }
-\author{ ~~who you are~~ }
-\note{ ~~further notes~~ 
-
- ~Make other sections like Warning with \section{Warning }{....} ~
+\description{
+  The group 2 statistics measure the magnitude of monthly
+  water condition and include 12 parameters.
 }
-\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (x, yr = NULL) 
-{
-    if (is.null(yr)) 
-        yr <- water.year(index(x))
-    ext <- annual.extrema(x)
-    sx <- split(x, yr)
-    zeros <- sapply(sx, function(x) length(which(x == 0)))
-    baseindex <- sapply(sx, function(x) min(rollmean(x, 7))/mean(x))
-    cbind(ext, "Zero flow days" = zeros, "Base index" = baseindex)
-  }
+data(willamette)
+group2(willamette, 'water')
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\author{
+  jason.e.law@gmail.com
+}
+\references{
+  \url{http://www.conservationgateway.org/Files/Pages/indicators-hydrologic-altaspx47.aspx}
+}
+

@@ -1,3 +1,4 @@
+#'@rdname internal
 `meandiff` <-
 function (x, na.rm = T) 
 {

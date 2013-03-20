@@ -1,3 +1,7 @@
+#'Return a string giving the water year for a date
+#'
+#'Returns a string specifying the water year (\code{'WY2010'}) for a date
+#'@param x a POSIXt object
 `water.year` <-
 function (x) 
 {

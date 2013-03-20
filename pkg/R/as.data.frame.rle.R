@@ -1,3 +1,4 @@
+#'@rdname internal
 `as.data.frame.rle` <-
 function (x) 
 {
