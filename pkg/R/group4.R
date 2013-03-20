@@ -21,6 +21,6 @@
   ldp <- split(as.data.frame(p), st.date.wy)
   lengths <- sapply(ldp, FUN = pulse.location)
   res <- cbind(number = t(numbers), length = t(lengths))
-  names(res) <- c('number of low', 'number of high', 'length of low', 'length of high')
+  colnames(res) <- c('number of low', 'number of high', 'length of low', 'length of high')
   return(res)
 }
