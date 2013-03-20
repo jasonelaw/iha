@@ -12,8 +12,6 @@
 #'@references
 #'\url{http://www.nature.org/initiatives/freshwater/conservationtools/art17004.html}
 #'@importFrom zoo index coredata
-#'@import lattice
-#'@import plyr
 #'@export
 #'@examples
 #'data(bullrun)

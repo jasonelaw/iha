@@ -6,6 +6,7 @@
 #'@param log logical indicating whether the y axis should be log scaled or not
 #'@param ... additional arguments passed to \link{xyplot}
 #'@importFrom RColorBrewer brewer.pal
+#'@importFrom lattice xyplot panel.lines panel.superpose
 #'@export
 `plotDischarge` <-
 function (z, palette = 'Dark2', log = F, ...) 
