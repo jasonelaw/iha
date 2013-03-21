@@ -10,8 +10,8 @@
 #'@author jason.e.law@@gmail.com
 #'@references \url{http://www.conservationgateway.org/Files/Pages/indicators-hydrologic-altaspx47.aspx}
 #'@importFrom caTools runmean
-#'@importFrom plyr ddply
-#'@importFrom zoo coredata
+#'@importFrom plyr ddply '.'
+#'@importFrom zoo coredata index
 #'@export
 #'@examples
 #'data(bullrun)
