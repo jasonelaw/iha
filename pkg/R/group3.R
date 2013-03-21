@@ -14,10 +14,11 @@
 #'group3(bullrun, 'water')
 #'
 `group3` <- function (x, year = c('water', 'calendar')){
+  stopifnot(is.zoo(x))
   year <- match.arg(year)
   yr <- switch(year,
                water = water.year(index(x)),
-               calendar = years(index(x)))
+               calendar = year(index(x)))
   sx <- split(x, yr)
   res <- sapply(sx, function(x) c(mindate(x), maxdate(x)))
   dimnames(res)[[1]] <- c("Min", "Max")

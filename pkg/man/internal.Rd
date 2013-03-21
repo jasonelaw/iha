@@ -1,7 +1,6 @@
 \name{as.data.frame.rle}
 \alias{as.data.frame.rle}
 \alias{circ.mean}
-\alias{leap.year}
 \alias{maxdate}
 \alias{meandiff}
 \alias{mindate}
@@ -10,15 +9,13 @@
 \alias{pulse.numbers}
 \alias{pulses}
 \alias{rezero.year}
+\alias{rle.end}
 \alias{rle.start}
-\alias{years}
 \title{Internal functions in IHA}
 \usage{
   as.data.frame.rle(x)
 
   circ.mean(x, units = c("days", "radians"))
-
-  leap.year(x)
 
   maxdate(x, julian = T)
 
@@ -38,7 +35,7 @@
 
   rle.start(x)
 
-  years(x, abbreviate = FALSE)
+  rle.end(x)
 }
 \description{
   These are internal, undocumented (for now) functions in

@@ -1,8 +1,8 @@
-\name{plot.group1}
-\alias{plot.group1}
+\name{plotGroup1}
+\alias{plotGroup1}
 \title{Plot group1 statistics}
 \usage{
-  plot.group1(x, ...)
+  plotGroup1(x, ...)
 }
 \arguments{
   \item{x}{a matrix of group1 staistics}

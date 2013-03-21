@@ -11,7 +11,8 @@
 #'@author jason.e.law@@gmail.com
 #'@references
 #'\url{http://www.nature.org/initiatives/freshwater/conservationtools/art17004.html}
-#'@importFrom zoo index coredata
+#'@importFrom zoo index coredata is.zoo
+#'@importFrom lubridate year month
 #'@export
 #'@examples
 #'data(bullrun)
@@ -19,16 +20,16 @@
 `group1` <-
 function (x, year = c('water', 'calendar'), FUN = median) 
 {
+  stopifnot(is.zoo(x))
 	year <- match.arg(year)
-	switch(year,
-			water = {
-				yr <- water.year(index(x))
-				lvls <- month.name[c(10:12, 1:9)]},
-			calendar = {
-				yr <- years(index(x))
-				lvls <- month.name})
-	mo <- factor(months(index(x)), levels = lvls)
-  res <- tapply(as.numeric(x), list(mo, yr), FUN)
+  idx <- index(x)
+	yr <- switch(year,
+	             water    = water.year(idx),
+	             calendar = year(idx))
+	mo <- switch(year,
+	               water    = water.month(idx, label = TRUE, abbr = FALSE),
+	               calendar = month(idx, label = TRUE, abbr = FALSE))
+  res <- tapply(coredata(x), list(mo, yr), FUN)
 	attr(res, 'FUN') <- deparse(substitute(FUN))
   return(t(res))
 }

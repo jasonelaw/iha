@@ -2,12 +2,9 @@
 \alias{group2}
 \title{Calculates the group2 IHA statistics}
 \usage{
-  group2(x, year = c("water", "calendar"),
-    window = c(1, 3, 7, 30, 90), ...)
+  group2(x, year = c("water", "calendar"), ...)
 }
 \arguments{
-  \item{window}{the rolling statistic window sizes}
-
   \item{...}{additional arguments passed to ddply}
 
   \item{x}{A zoo object containing the flow series}

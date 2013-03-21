@@ -4,7 +4,6 @@
 #'include 12 parameters.
 #'
 #'@inheritParams group3
-#'@param window the rolling statistic window sizes
 #'@param ... additional arguments passed to ddply
 #'@return a data frame with the group 2 statistics for each year
 #'@author jason.e.law@@gmail.com
@@ -12,16 +11,19 @@
 #'@importFrom caTools runmean
 #'@importFrom plyr ddply '.'
 #'@importFrom zoo coredata index
+#'@importFrom lubridate year
 #'@export
 #'@examples
 #'data(bullrun)
 #'group2(bullrun, 'water')
 #'
-'group2' <- function(x, year = c('water', 'calendar'), window = c(1, 3, 7, 30, 90), ...){
+'group2' <- function(x, year = c('water', 'calendar'),  ...){
+  stopifnot(is.zoo(x))
+  window <- c(1, 3, 7, 30, 90)
   year <- match.arg(year)
   yr <- switch(year,
                water = water.year(index(x)),
-               calendar = years(index(x)))
+               calendar = year(index(x)))
 	rollx <- mapply('runmean', k = window, MoreArgs = list(x = coredata(x), alg = 'fast', endrule = 'NA'))
   colnames(rollx) <- sprintf('w%s', window)
   xd <- cbind(year = yr, as.data.frame(rollx))

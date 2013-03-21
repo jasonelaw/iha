@@ -4,7 +4,7 @@
 #'@param x a matrix of group1 staistics
 #'@param ... additional arguments passed to matplot
 #'@export
-`plot.group1` <-
+`plotGroup1` <-
 function (x, ...) 
 {	
     matplot(1:ncol(x), t(x), xaxt = "n", ylab = "Average Discharge", 

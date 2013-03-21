@@ -5,16 +5,17 @@
 #'
 #'@inheritParams group3
 #'@return a matrix of group 3 parameters
-
 #'@author jason.e.law@@gmail.com
 #'@references \url{http://www.conservationgateway.org/Files/Pages/indicators-hydrologic-altaspx47.aspx}
+#'@importFrom zoo coredata
 #'@export
 #'@examples
 #'data(bullrun)
 #'group4(bullrun)
 `group4` <- function(x){
-  q <- quantile(as.numeric(x), probs = c(0.25, 0.75))
-  p <- pulses(as.numeric(x), q)
+  stopifnot(is.zoo(x))
+  q <- quantile(coredata(x), probs = c(0.25, 0.75))
+  p <- pulses(coredata(x), q)
   st.date <- index(x)[rle.start(p)]
   st.date.wy <- water.year(st.date)
   numbers <- sapply(split(p$values, st.date.wy), pulse.numbers)

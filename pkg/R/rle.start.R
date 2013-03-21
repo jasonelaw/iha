@@ -1,10 +1,11 @@
 #'@rdname internal
-`rle.start` <-
-function (x) 
-{
-    pl <- cumsum(x$length)
-    l <- length(pl)
-    pl <- rep(1, l) + pl
-    start <- c(1, pl[-l])
-    return(start)
+`rle.start` <- function (x){
+  pl <- cumsum(c(1, x$length))
+  start <- pl[-length(pl)]
+  return(start)
+}
+#'@rdname internal
+`rle.end` <- function(x){
+  end <- cumsum(x$length)
+  return(end)
 }

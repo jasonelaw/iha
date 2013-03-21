@@ -15,7 +15,7 @@
   year <- match.arg(year)
   yr <- switch(year,
                water = water.year(index(x)),
-               calendar = years(index(x)))
+               calendar = year(index(x)))
   sx <- split(as.numeric(x), yr)
   res <- sapply(sx, FUN = meandiff)
   dimnames(res)[[1]] <- c("Rise rate", "Fall rate", "Reversals")
