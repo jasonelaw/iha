@@ -41,12 +41,13 @@ read.flow <-
   }
   cat(paste("Retrieving data from: \n", input, "\n",sep=""))
   flow <- read.delim(file = input, header = T, comment.char = "#", as.is = T)
-  nms <- c("agency","site_no","date","discharge","discharge_qual")
-  if (gauge) nms <- c(nms, "gauge", "gauge_qual")
-  names(flow) <- nms
+  #subset(flow, select = c('agency_cd',  'site_no'	'datetime', '04_00060_00003'
+  #nms <- c("agency","site_no","date","discharge","discharge_qual")
+  #if (gauge) nms <- c(nms, "gauge", "gauge_qual")
+  #names(flow) <- nms
   flow <- flow[-1,]
-  flow$date<- as.POSIXct(strptime(flow$date, format="%Y-%m-%d"))
-  flow$discharge <- as.numeric(flow$discharge)
+  flow$datetime<- as.POSIXct(strptime(flow$datetime, format="%Y-%m-%d"))
+  #flow$discharge <- as.numeric(flow$discharge)
   if (gauge){
     flow$gauge <- as.numeric(flow$gauge)
   }

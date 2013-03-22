@@ -8,7 +8,6 @@
 \alias{pulse.location}
 \alias{pulse.numbers}
 \alias{pulses}
-\alias{rezero.year}
 \alias{rle.end}
 \alias{rle.start}
 \title{Internal functions in IHA}
@@ -19,7 +18,7 @@
 
   maxdate(x, julian = T)
 
-  meandiff(x, na.rm = T)
+  meandiff(x, FUN = median, na.rm = T)
 
   mindate(x, julian = T)
 
@@ -30,8 +29,6 @@
   pulse.numbers(x)
 
   pulses(x, q)
-
-  rezero.year(x, month = 10, day = 1, year.prefix = "WY")
 
   rle.start(x)
 

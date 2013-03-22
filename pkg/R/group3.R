@@ -1,6 +1,10 @@
 #'Calculate the group 3 IHA parameters.
 #'
-#'The group 3 IHA parameters measure the timing of annual extreme water conditions
+#'The group 3 IHA parameters measure the timing of annual extreme water conditions.
+#'These metrics will differ from TNC metrics where the minimum or maximum occurs during a leap year after
+#'february 28th.  The TNC software seems to assume that all years are leap years.
+#'So if the minium for a year is Mar 1 of a non-leap year, this code will return 60,
+#'whereas the TNC sofware returns 61.
 #'
 #'@param x A zoo object containing the flow series
 #'@param year the type of year factor to be used, \code{yr = 'water'} or \code{yr = 'calendar'}

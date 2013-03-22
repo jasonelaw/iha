@@ -1,8 +1,9 @@
 #'Return a string giving the water year for a date
 #'
-#'Returns a string specifying the water year (\code{'WY2010'}) for a date
-#'@param x a POSIXt object
+#'Returns a number specifying the water year (\code{2010}) for a date.
+#'@param x a date-time object which can be handled by lubridate
 #'@importFrom lubridate month year
+#'@export
 water.year <- function(x){
   yr <- year(x)
   ifelse(month(x, label = FALSE) > 9, yr + 1, yr)

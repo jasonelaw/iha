@@ -5,10 +5,11 @@
   water.year(x)
 }
 \arguments{
-  \item{x}{a POSIXt object}
+  \item{x}{a date-time object which can be handled by
+  lubridate}
 }
 \description{
-  Returns a string specifying the water year
-  (\code{'WY2010'}) for a date
+  Returns a number specifying the water year (\code{2010})
+  for a date.
 }
 
