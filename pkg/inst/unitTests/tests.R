@@ -3,7 +3,7 @@ library(testthat)
 subsetTNC <- function(x, year, group = c(1,2,3,4,5)){
   cols <- switch(group,
                  2:13, c(14,19,15,20,16,21,17,22,18,23:25), 26:27, 28:31, 32:34)
-  as.matrix(subset(x, Year == year, select = cols))
+  as.matrix(subset(x, Year %in% year, select = cols))
 }
 
 # Test data file
@@ -17,25 +17,32 @@ tnc.res <- read.csv(file = system.file('unitTests', 'data', 'roanoke.csv', packa
 tnc.res <- subset(tnc.res, Year != 1912)
 
 # 1999
-year <- 2000
+year <- 1999
 r99 <- roan[water.year(index(roan)) == year]
 
 my <- group1(r99)
 target <- subsetTNC(tnc.res, year = year, group = 1)
-expect_that(my, equals(target, check.attributes = F, tolerance = .001))
+expect_that(my, equals(target, check.attributes = F))
 
 my <- as.matrix(group2(r99)[,2:13])
 target <- subsetTNC(tnc.res, year = year, group = 2)
-expect_that(my, equals(target, check.attributes = F, tolerance = 0.001, scale = target))
+# Check that scaled absolute difference is < 0.01
+expect_that(round(my), equals(target, check.attributes = F, 
+                                     scale = target, tolerance = 0.01))
 
-my <- group3(r99)
+my <- group3(r99, mimic.tnc = T)
 target <- subsetTNC(tnc.res, year = year, group = 3)
-expect_that(my, equals(target, check.attributes = F, tolerance = 0.001, scale = target))
+expect_that(my, equals(target, check.attributes = F))
 
-my <- group4(r99)
+my <- group4(r99, thresholds = quantile(coredata(roan), c(0.25, 0.75)))
 target <- subsetTNC(tnc.res, year = year, group = 4)
-expect_that(my, equals(target, check.attributes = F, tolerance = 0.001, scale = target))
+expect_that(my, equals(target, check.attributes = F))
 
 my <- group5(r99)
 target <- subsetTNC(tnc.res, year = year, group = 5)
-expect_that(my, equals(target, check.attributes = F, tolerance = 0.001, scale = target))
+expect_that(my, equals(target, check.attributes = F))
+
+# All
+my <- group1(roan)
+target <- subsetTNC(tnc.res, unique(year(index(roan))), 1)
+expect_that(my, equals(target, check.attributes = F, scale = target, tolerance = 0.01))

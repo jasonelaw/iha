@@ -17,14 +17,32 @@
 #'data(bullrun)
 #'group3(bullrun, 'water')
 #'
-`group3` <- function (x, year = c('water', 'calendar')){
+`group3` <- function (x, year = c('water', 'calendar'), mimic.tnc = F){
+  ihaRange <- function(x, mimic.tnc){
+    if (mimic.tnc){
+      return(mimicTncDate(which.range.zoo(x)))
+    } else {
+      return(yday(c(which.range.zoo(x))))
+    }
+  }
   stopifnot(is.zoo(x))
   year <- match.arg(year)
   yr <- switch(year,
                water = water.year(index(x)),
                calendar = year(index(x)))
   sx <- split(x, yr)
-  res <- sapply(sx, function(x) c(mindate(x), maxdate(x)))
+
+  res <- sapply(sx, ihaRange, mimic.tnc = mimic.tnc)
   dimnames(res)[[1]] <- c("Min", "Max")
   return(t(res))
 }
+
+#'@export
+mimicTncDate <- function(x){
+  is.leap.year <- leap_year(x)
+  is.janfeb <- month(x) < 3L
+  ans <- yday(x)
+  ans <- ifelse(!is.janfeb & !is.leap.year, ans + 1, ans)
+  ans
+}
+
