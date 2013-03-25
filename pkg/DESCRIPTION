@@ -1,7 +1,7 @@
 Package: IHA
 Type: Package
 Title: This package implements The Nature Conservancy's Indicators of Hydrologic Alteration software in R.
-Version: 0.2-31
+Version: 0.2-36
 Date: 2011-02-22
 Author: Jason Law
 Maintainer: Jason Law <jason.e.law@gmail.com>
