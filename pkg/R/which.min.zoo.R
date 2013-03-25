@@ -16,11 +16,14 @@ which.min.zoo <- function(x) {
 }
 
 #'@rdname which.min.zoo
+#'@importFrom zoo coredata index
+#'@export
 which.max.zoo <- function(x){
   index(x)[which.max(coredata(x))]
 }
 
 #'@rdname which.min.zoo
+#'@export
 which.range.zoo <- function(x){
   c(which.min.zoo(x), which.max.zoo(x))
 }

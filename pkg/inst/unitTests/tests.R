@@ -16,8 +16,8 @@ roan <- roan[water.year(index(roan)) != 1912]
 tnc.res <- read.csv(file = system.file('unitTests', 'data', 'roanoke.csv', package = 'IHA'))
 tnc.res <- subset(tnc.res, Year != 1912)
 
-# 1999
-year <- 1999
+# 2000
+year <- 2000
 r99 <- roan[water.year(index(roan)) == year]
 
 my <- group1(r99)
@@ -27,8 +27,7 @@ expect_that(my, equals(target, check.attributes = F))
 my <- as.matrix(group2(r99)[,2:13])
 target <- subsetTNC(tnc.res, year = year, group = 2)
 # Check that scaled absolute difference is < 0.01
-expect_that(round(my), equals(target, check.attributes = F, 
-                                     scale = target, tolerance = 0.01))
+expect_that(signif(my, 4), equals(target, check.attributes = F))
 
 my <- group3(r99, mimic.tnc = T)
 target <- subsetTNC(tnc.res, year = year, group = 3)
@@ -45,4 +44,22 @@ expect_that(my, equals(target, check.attributes = F))
 # All
 my <- group1(roan)
 target <- subsetTNC(tnc.res, unique(year(index(roan))), 1)
+# Absolute value of scaled difference within 1% of target
 expect_that(my, equals(target, check.attributes = F, scale = target, tolerance = 0.01))
+
+my <- as.matrix(group2(roan, mimic.tnc = T)[, 2:13])
+target <- subsetTNC(tnc.res, unique(year(index(roan))), 2)
+# Absolute value of scaled difference within 0.1% of target
+expect_that(signif(my, 4), equals(target, check.attributes = F))
+
+my <- group3(roan, mimic.tnc = T)
+target <- subsetTNC(tnc.res, year = unique(year(index(roan))), group = 3)
+expect_that(my, equals(target, check.attributes = F))
+
+my <- group4(roan, thresholds = quantile(coredata(roan), c(0.25, 0.75)))
+target <- subsetTNC(tnc.res, year = unique(year(index(roan))), group = 4)
+expect_that(my, equals(target, check.attributes = F))
+
+my <- group5(roan)
+target <- subsetTNC(tnc.res, year =unique(year(index(roan))), group = 5)
+expect_that(my, equals(target, check.attributes = F))

@@ -3,7 +3,8 @@
 #'The group 2 statistics measure the magnitude of monthly water condition and
 #'include 12 parameters.
 #'
-#'@inheritParams group3
+#'@inheritParams group5
+#'@param mimic.tnc should the function perform the calculation like the TNC IHA software?
 #'@param ... additional arguments passed to ddply
 #'@return a data frame with the group 2 statistics for each year
 #'@author jason.e.law@@gmail.com
@@ -16,13 +17,13 @@
 #'data(bullrun)
 #'group2(bullrun, 'water')
 #'
-'group2' <- function(x, year = c('water', 'calendar'),  ...){
+'group2' <- function(x, year = c('water', 'calendar'), mimic.tnc = T, ...){
   stopifnot(is.zoo(x))
   year <- match.arg(year)
   yr <- switch(year,
                water = water.year(index(x)),
                calendar = year(index(x)))
-  rollx <- runmean.iha(coredata(x))
+  rollx <- runmean.iha(x, year = yr, mimic.tnc = mimic.tnc)
   xd <- cbind(year = yr, as.data.frame(rollx))
 	res <- ddply(xd, .(year), function(x) group2Funs(x[,-1]), ...)
 	return(res)
@@ -32,11 +33,22 @@
 #'
 #'Calculate rolling means four group2 statsistics.  Uses runmean from caTools
 #'@param x a numeric vector
+#'@param year a vector of year (calendar or water year identifiers; necessary 
+#'for mimic.tnc = T
+#'@param mimic.tnc logical should the years be split before the running mean is 
+#'calculated
 #'@importFrom caTools runmean
 #'@export
-runmean.iha <- function(x){
+runmean.iha <- function(x, year = NULL, mimic.tnc = F){
   window <- c(1, 3, 7, 30, 90)
-  rollx <- mapply('runmean', k = window, MoreArgs = list(x = x, alg = 'fast', endrule = 'NA'))
+  vrunmean <- Vectorize(runmean, vectorize.args = 'k')
+  if (mimic.tnc){
+    sx <- split(coredata(x), year)
+    rollx <- lapply(sx, vrunmean, k = window, alg = 'fast', endrule = 'NA')
+    rollx <- do.call('rbind', rollx)
+  } else {
+    rollx <- vrunmean(coredata(x), k = window, alg = 'fast', endrule = 'NA')
+  }
   colnames(rollx) <- sprintf('w%s', window)
   return(rollx)
 }
@@ -55,6 +67,3 @@ group2Funs <- function(x){
   names(ans) <- c(nms, 'Zero flow days', 'Base index')
   ans
 }
-
-
-

@@ -1,9 +1,8 @@
 \name{as.data.frame.rle}
 \alias{as.data.frame.rle}
+\alias{baseflow.index}
 \alias{circ.mean}
-\alias{maxdate}
 \alias{meandiff}
-\alias{mindate}
 \alias{monotonic.segments}
 \alias{pulse.location}
 \alias{pulse.numbers}
@@ -14,13 +13,11 @@
 \usage{
   as.data.frame.rle(x)
 
+  baseflow.index(x, na.rm = F)
+
   circ.mean(x, units = c("days", "radians"))
 
-  maxdate(x, julian = T)
-
   meandiff(x, FUN = median, na.rm = T)
-
-  mindate(x, julian = T)
 
   monotonic.segments(x, diff = T)
 

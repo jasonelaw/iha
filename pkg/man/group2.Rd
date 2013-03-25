@@ -2,9 +2,13 @@
 \alias{group2}
 \title{Calculates the group2 IHA statistics}
 \usage{
-  group2(x, year = c("water", "calendar"), ...)
+  group2(x, year = c("water", "calendar"), mimic.tnc = T,
+    ...)
 }
 \arguments{
+  \item{mimic.tnc}{should the function perform the
+  calculation like the TNC IHA software?}
+
   \item{...}{additional arguments passed to ddply}
 
   \item{x}{A zoo object containing the flow series}

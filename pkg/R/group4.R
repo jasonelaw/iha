@@ -9,7 +9,8 @@
 #'which corresponds to R's \code{type = 6} option in \link{quantile}.  The
 #'default thresholds here are calculated using R's default \code{type = 7} option.
 #'
-#'@inheritParams group3
+#'@inheritParams group5
+#'@param thresholds vector of length 2; the cut off for a low pulse and a high pulse, respectively
 #'@return a matrix of group 3 parameters
 #'@author jason.e.law@@gmail.com
 #'@references \url{http://www.conservationgateway.org/Files/Pages/indicators-hydrologic-altaspx47.aspx}
@@ -18,19 +19,22 @@
 #'@examples
 #'data(bullrun)
 #'group4(bullrun)
-`group4` <- function(x, thresholds = NULL){
+`group4` <- function(x, year = c('water', 'calendar'), thresholds = NULL){
   stopifnot(is.zoo(x))
   if (is.null(thresholds)){
     thresholds <- quantile(coredata(x), probs = c(0.25, 0.75))
   }
+  year <- match.arg(year)
   stopifnot(identical(length(thresholds), 2L))
   p <- pulses(coredata(x), thresholds)
   st.date <- index(x)[rle.start(p)]
-  st.date.wy <- water.year(st.date)
+  st.date.wy <- switch(year,
+                       water = water.year(st.date),
+                       calendar = year(st.date))
   numbers <- sapply(split(p$values, st.date.wy), pulse.numbers)
   ldp <- split(as.data.frame(p), st.date.wy)
   lengths <- sapply(ldp, FUN = pulse.location)
   res <- cbind(number = t(numbers), length = t(lengths))
   colnames(res) <- c('Low pulse number', 'High pulse number', 'Low pulse length', 'High pulse length')
-  return(res[,c(1,3,2,4), drop = F])
+  return(res[, c(1,3,2,4), drop = F])
 }

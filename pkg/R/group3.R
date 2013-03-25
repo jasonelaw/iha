@@ -6,12 +6,12 @@
 #'So if the minium for a year is Mar 1 of a non-leap year, this code will return 60,
 #'whereas the TNC sofware returns 61.
 #'
-#'@param x A zoo object containing the flow series
-#'@param year the type of year factor to be used, \code{yr = 'water'} or \code{yr = 'calendar'}
-#'for water years and calendar years respectively
+#'@inheritParams group5
+#'@param mimic.tnc should the function perform the calculation like the TNC IHA software?
 #'@return a matrix of the group 3 parameters
 #'@author jason.e.law@@gmail.com
 #'@references \url{http://www.conservationgateway.org/Files/Pages/indicators-hydrologic-altaspx47.aspx}
+#'@importFrom lubridate yday year
 #'@export
 #'@examples
 #'data(bullrun)
@@ -20,7 +20,7 @@
 `group3` <- function (x, year = c('water', 'calendar'), mimic.tnc = F){
   ihaRange <- function(x, mimic.tnc){
     if (mimic.tnc){
-      return(mimicTncDate(which.range.zoo(x)))
+      return(yday2(which.range.zoo(x)))
     } else {
       return(yday(c(which.range.zoo(x))))
     }
@@ -36,13 +36,3 @@
   dimnames(res)[[1]] <- c("Min", "Max")
   return(t(res))
 }
-
-#'@export
-mimicTncDate <- function(x){
-  is.leap.year <- leap_year(x)
-  is.janfeb <- month(x) < 3L
-  ans <- yday(x)
-  ans <- ifelse(!is.janfeb & !is.leap.year, ans + 1, ans)
-  ans
-}
-
