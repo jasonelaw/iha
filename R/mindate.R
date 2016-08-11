@@ -2,8 +2,8 @@
 `mindate` <-
 function (x, julian = T) 
 {
-    mn <- index(x)[which.min(x)]
-    if (julian) 
-        mn <- as.POSIXlt(mn)$yday + 1
-	mn
+  mx <- index(x)[which.min(x)]
+  if (julian) 
+    mx <- (as.POSIXlt(mx, tz = tz(mx))$yday + 1)
+  return(mx)
 }
