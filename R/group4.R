@@ -20,7 +20,7 @@
 #'data(bullrun)
 #'group4(bullrun)
 `group4` <- function(x, year = c('water', 'calendar'), thresholds = NULL){
-  stopifnot(is.zoo(x))
+  stopifnot(is.zoo(x), inherits(index(x), 'Date') | inherits(index(x), 'POSIXt'))
   if (is.null(thresholds)){
     thresholds <- quantile(coredata(x), probs = c(0.25, 0.75))
   }

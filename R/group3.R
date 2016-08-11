@@ -25,7 +25,7 @@
       return(yday(c(which.range.zoo(x))))
     }
   }
-  stopifnot(is.zoo(x))
+  stopifnot(is.zoo(x), inherits(index(x), 'Date') | inherits(index(x), 'POSIXt'))
   year <- match.arg(year)
   yr <- switch(year,
                water = water.year(index(x)),

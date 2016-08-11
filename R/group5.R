@@ -15,6 +15,7 @@
 #'data(bullrun)
 #'group5(bullrun, 'water')
 `group5` <- function (x, year = c('water', 'calendar')){
+  stopifnot(is.zoo(x), inherits(index(x), 'Date') | inherits(index(x), 'POSIXt'))
   year <- match.arg(year)
   yr <- switch(year,
                water = water.year(index(x)),

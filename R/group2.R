@@ -18,7 +18,7 @@
 #'group2(bullrun, 'water')
 #'
 'group2' <- function(x, year = c('water', 'calendar'), mimic.tnc = T, ...){
-  stopifnot(is.zoo(x))
+  stopifnot(is.zoo(x), inherits(index(x), 'Date') | inherits(index(x), 'POSIXt'))
   year <- match.arg(year)
   yr <- switch(year,
                water = water.year(index(x)),

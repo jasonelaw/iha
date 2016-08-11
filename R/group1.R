@@ -20,7 +20,7 @@
 `group1` <-
 function (x, year = c('water', 'calendar'), FUN = median) 
 {
-  stopifnot(is.zoo(x))
+  stopifnot(is.zoo(x), inherits(index(x), 'Date') | inherits(index(x), 'POSIXt'))
 	year <- match.arg(year)
   idx <- index(x)
 	yr <- switch(year,
